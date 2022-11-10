@@ -12,30 +12,30 @@
 {% block content %}
 
 <section class="page-header">
-  <h1>Cat List</h1>
-  <img src="{% static 'images/cool-cat.svg' %}" alt="A cool cat" />
-  <img src="{% static 'images/happy-cat.svg' %}" alt="A happy cat" />
-  <img src="{% static 'images/teacup-cat.svg' %}" alt="A cat in a teacup" />
-  <img src="{% static 'images/cat-in-box.svg' %}" alt="A cat in a box" />
+  <h1>Car List</h1>
+  <img src="{% static 'images/racing-car-1.svg' %}" alt="A cool car" />
+  <img src="{% static 'images/suv-car.svg' %}" alt="A big car" />
+  <img src="{% static 'images/cool-car.svg' %}" alt="A cooler racing car" />
+  <img src="{% static 'images/disney-car.svg' %}" alt="Cars logo" />
 </section>
 
 <section class="card-container">
-  {% for cat in cats %}
+  {% for car in cars %}
     <div class="card">
       <div class="card-content">
         <div class="card-img-container">
           <img 
-            src="{% static 'images/sk8r-boi-cat.svg' %}" 
-            alt="A skater boy cat"
+            src="{% static 'images/disney-car.svg' %}" 
+            alt="Car logo"
           >
         </div>
-        <h2 class="card-title">{{ cat.name }}</h2>
-        {% if cat.age > 0 %}
-          <p>A {{ cat.age }} year old {{ cat.breed }}</p>
+        <h2 class="card-title">{{ car.year }}</h2>
+        {% if car.make > 0 %}
+          <p>A {{ car.model }} {{ car.model }}</p>
         {% else %}
-          <p>A {{ cat.breed }} kitten.</p>
+          <p>A {{ car.model }} is cool.</p>
         {% endif %}
-        <p><small>{{ cat.description }}</small></p>
+        <p><small>{{ car.model }}</small></p>
       </div>
     </div>
   {% endfor %}
