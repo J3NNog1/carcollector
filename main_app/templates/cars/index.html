@@ -29,13 +29,13 @@
             alt="Car logo"
           >
         </div>
-        <h2 class="card-title">{{ car.year }}</h2>
-        {% if car.make > 0 %}
-          <p>A {{ car.model }} {{ car.model }}</p>
+        <h2 class="card-title">{{ car.owner }}</h2>
+        {% if car.make > 2019 %}
+          <p>A {{ car.year }} {{ car.model }} {{ car.model }} is fast!</p>
         {% else %}
-          <p>A {{ car.model }} is cool.</p>
+          <p>{{ car.owner }} needs to get a faster car 😎</p>
         {% endif %}
-        <p><small>{{ car.model }}</small></p>
+        <p><small>{{ car.year }} {{ car.model }} {{ car.model }}</small></p>
       </div>
     </div>
   {% endfor %}
