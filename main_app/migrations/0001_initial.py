@@ -20,6 +20,7 @@ class Migration(migrations.Migration):
                 ('make', models.CharField(max_length=100)),
                 ('model', models.TextField(max_length=250)),
                 ('color', models.CharField(max_length=250)),
+                ('description', models.CharField(max_length=250)),
             ],
         ),
     ]

@@ -21,23 +21,25 @@
 
 <section class="card-container">
   {% for car in cars %}
-    <div class="card">
-      <div class="card-content">
-        <div class="card-img-container">
-          <img 
-            src="{% static 'images/disney-car.svg' %}" 
-            alt="Car logo"
-          >
+  <div class="card">
+      <a href="/cars/{{ car.id }}">
+        <div class="card-content">
+          <div class="card-img-container">
+            <img 
+              src="{% static 'images/disney-car.svg' %}" 
+              alt="Car logo"
+            >
+          </div>
+          <h2 class="card-title">{{ car.owner }}</h2>
+          {% if car.year > 2019 %}
+            <p>{{ car.owner }} has a fast car! </p>
+          {% else %}
+            <p>{{ car.owner }} needs to get a faster car 😎</p>
+          {% endif %}
+          <p><small>{{ car.year }} {{ car.make }} {{ car.model }}</small></p>
         </div>
-        <h2 class="card-title">{{ car.owner }}</h2>
-        {% if car.make > 2019 %}
-          <p>A {{ car.year }} {{ car.model }} {{ car.model }} is fast!</p>
-        {% else %}
-          <p>{{ car.owner }} needs to get a faster car 😎</p>
-        {% endif %}
-        <p><small>{{ car.year }} {{ car.model }} {{ car.model }}</small></p>
-      </div>
-    </div>
+      </a>
+  </div>
   {% endfor %}
 </section>
 
