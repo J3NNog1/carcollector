@@ -10,6 +10,13 @@ class Car(models.Model):
   color = models.CharField(max_length=250)
   description = models.TextField(max_length=250)
   
+# Add new Feeding model below Cat model
+class Maintenance(models.Model):
+  date = models.DateField()
+  mileage = models.IntegerField()
+  description = models.TextField(max_length=10000)  
+  invoice_total = models.IntegerField()
+  
   
   def __str__(self):
     return self.owner
