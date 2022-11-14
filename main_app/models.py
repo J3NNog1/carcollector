@@ -11,7 +11,21 @@ SERVICE_TYPE = (
   ('P', "Parts"),
   ('T', "Tires"),
 )
+# Add the Toy model
+class Rental(models.Model):
+  driver = models.CharField(max_length=250)
+  start_mileage = models.CharField(max_length=1000000)
+  end_mileage = models.CharField(max_length=1000000)
+  days_rented = models.CharField(max_length=10000)
+  paid_by= models.CharField(max_length=250)
 
+  def __str__(self):
+    return self.driver
+
+  def get_absolute_url(self):
+    return reverse('rental_detail', kwargs={'pk': self.id})
+  
+  
 class Car(models.Model):
   owner = models.CharField(max_length=250)
   year = models.IntegerField()

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Car
+from .models import Car, Rental
 from .forms import MaintenanceForm
 
 # Add the following import
@@ -44,3 +44,7 @@ class CarUpdate(UpdateView):
 class CarDelete(DeleteView):
   model = Car
   success_url = '/cars/'
+
+class RentalCreate(CreateView):
+  model = Rental
+  fields = '__all__'
