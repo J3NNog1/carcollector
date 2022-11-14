@@ -36,11 +36,11 @@ def add_maintenance(request, car_id):
 
 class CarCreate(CreateView):
   model = Car
-  fields = '__all__'
+  fields = ['owner', 'year', 'make', 'color', 'description']
   
 class CarUpdate(UpdateView):
   model = Car
-  fields = ['year', 'make', 'model', 'color']
+  fields = ['year', 'make', 'model', 'color', 'description']
   
 class CarDelete(DeleteView):
   model = Car
@@ -58,7 +58,7 @@ class RentalDetail(DetailView):
   
 class RentalUpdate(UpdateView):
   model = Rental
-  fields = ['driver', 'days_rented']
+  fields = ['driver', 'start_mileage', 'end_mileage','days_rented', 'paid_by']
 
 class RentalDelete(DeleteView):
   model = Rental

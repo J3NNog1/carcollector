@@ -33,6 +33,7 @@ class Car(models.Model):
   model = models.CharField(max_length=250)
   color = models.CharField(max_length=250)
   description = models.TextField(max_length=250)
+  rentals = models.ManyToManyField(Rental)
   
   def __str__(self):
     return self.owner
