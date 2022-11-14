@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from datetime import date
+
 # Create your models here.
 
 SERVICE_TYPE = (
@@ -24,7 +26,9 @@ class Car(models.Model):
   def get_absolute_url(self):
     return reverse('cars_detail', kwargs={'car_id': self.id})
   
-  
+  def serviced_for_today(self):
+    return self.maintenance_set.filter(date=date.today()).count() >= len(SERVICE_TYPE)
+    
 class Maintenance(models.Model):
   date = models.DateField('Maintenance Date')
   vin = models.CharField(max_length=6)

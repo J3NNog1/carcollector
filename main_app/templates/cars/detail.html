@@ -81,6 +81,11 @@
       method="post" 
       class="subsection-content"
     >
+    {% if car.serviced_for_today %}
+        <p class="serviced">{{car.year}} {{car.make}} {{car.model}} was serviced today!</p>
+      {% else %}
+        <p class="unserviced">{{car.year}} {{car.make}} {{car.model}} might need a service!</p>
+      {% endif %}
       {% csrf_token %}
       {{ maintenance_form.as_p }}
       <button type="submit" class="btn submit">Add Maintenance</button>
