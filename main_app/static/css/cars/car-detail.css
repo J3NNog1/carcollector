@@ -116,13 +116,13 @@
   margin-left: 16px;
 }
 
-.feedings h2,
+.maintenance h2,
 .toys h2 {
   font-size: 3.2rem;
   margin: 0;
 }
 
-.feedings h3,
+.maintenance h3,
 .toys h3 {
   font-size: var(--font-xl);
   margin: 10px 0;

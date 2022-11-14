@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Car
+from .forms import MaintenanceForm
+
 # Add the following import
 
 
@@ -19,7 +21,9 @@ def cars_index(request):
 
 def cars_detail(request, car_id):
   car = Car.objects.get(id=car_id)
-  return render(request, 'cars/detail.html', { 'car': car })
+  maintenance_form = MaintenanceForm()
+  return render(request, 'cars/detail.html', {
+    'car': car, 'maintenance_form': maintenance_form})
 
 class CarCreate(CreateView):
   model = Car
