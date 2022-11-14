@@ -19,6 +19,8 @@
   type="text/css"
   href="{% static 'css/cars/car-detail.css' %}"
 />
+<script defer src="{% static 'js/car-detail.js' %}"></script>
+
 {% endblock %} {% block content %}
 
 <section class="car-container">
@@ -73,17 +75,36 @@
     </table>
   </section>
 </div>
-<h3>Add Vehicle Maintenance</h3>
+<h3>Add Maintenance</h3>
     <form
-      method="POST" 
+      action="{% url 'add_maintenance' car.id %}" 
+      method="post" 
       class="subsection-content"
     >
       {% csrf_token %}
       {{ maintenance_form.as_p }}
-      <button type="submit" class="btn submit">Add Vehicle Maintenance</button>
-      <h3>Past Maintenances</h3>
+      <button type="submit" class="btn submit">Add Maintenance</button>
     </form>
+    <h3>Past Maintenances</h3>
+    {% if car.maintenance_set.all.count %}
+      <table>
+        <thead>
+          <tr><th>Date</th><th>Vin</th><th>Service type</th></tr>
+        </thead>
+        <tbody>
+          {% for maintenance in car.maintenance_set.all %}
+            <tr>
+              <td>{{maintenance.date}}</td>
+              <td>{{maintenance.vin}}</td>
+              <td>{{maintenance.get_service_type_display}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+			<div class="subsection-content">
+        <p>{{car.year}} {{car.make}} {{car.model}}has never been maintenanced!</p>
+      </div>
+    {% endif %}
   
-  
-    {% comment %} New code above {% endcomment %}
 {% endblock %}

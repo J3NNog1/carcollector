@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Car
 from .forms import MaintenanceForm
@@ -24,6 +24,14 @@ def cars_detail(request, car_id):
   maintenance_form = MaintenanceForm()
   return render(request, 'cars/detail.html', {
     'car': car, 'maintenance_form': maintenance_form})
+  
+def add_maintenance(request, car_id):
+  form = MaintenanceForm(request.POST)
+  if form.is_valid():
+    new_maintenance = form.save(commit=False)
+    new_maintenance.car_id = car_id
+    new_maintenance.save()
+  return redirect('cars_detail', car_id=car_id)
 
 class CarCreate(CreateView):
   model = Car

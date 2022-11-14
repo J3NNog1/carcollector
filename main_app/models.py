@@ -28,17 +28,19 @@ class Car(models.Model):
 class Maintenance(models.Model):
   date = models.DateField('Maintenance Date')
   vin = models.CharField(max_length=6)
-  mileage = models.IntegerField()
+  mileage = models.CharField(max_length=1000000)
   service_type = models.CharField(
     max_length=15,
     choices=SERVICE_TYPE,
     default=SERVICE_TYPE[0][0],
     )  
   description = models.TextField(max_length=10000)
-  invoice_total = models.IntegerField()
+  invoice_total = models.CharField(max_length=10000000)
 
   car = models.ForeignKey(Car, on_delete=models.CASCADE)
   
   def __str__(self):
-    # Nice method for obtaining the friendly value of a Field.choice
     return f"{self.get_service_type_display()} on {self.date} for vehicle ending in {self.vin}"
+
+class Meta:
+    ordering = ['-date']
