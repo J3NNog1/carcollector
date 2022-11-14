@@ -13,5 +13,8 @@ urlpatterns = [
   path('rentals/create/', views.RentalCreate.as_view(), name='rentals_create'),
   path('rentals/<int:pk>/', views.RentalDetail.as_view(), name='rentals_detail'),
   path('rentals/', views.RentalList.as_view(), name='rentals_index'),
+  path('rentals/<int:pk>/update/', views.RentalUpdate.as_view(), name='rentals_update'),
+  path('rentals/<int:pk>/delete/', views.RentalDelete.as_view(), name='rentals_delete'),
+  
   
 ]

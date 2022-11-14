@@ -55,3 +55,11 @@ class RentalList(ListView):
 
 class RentalDetail(DetailView):
   model = Rental
+  
+class RentalUpdate(UpdateView):
+  model = Rental
+  fields = ['driver', 'days_rented']
+
+class RentalDelete(DeleteView):
+  model = Rental
+  success_url = '/rentals/'
