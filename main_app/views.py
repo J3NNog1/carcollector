@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 from .models import Car, Rental
 from .forms import MaintenanceForm
 
@@ -48,3 +49,9 @@ class CarDelete(DeleteView):
 class RentalCreate(CreateView):
   model = Rental
   fields = '__all__'
+  
+class RentalList(ListView):
+  model = Rental
+
+class RentalDetail(DetailView):
+  model = Rental
