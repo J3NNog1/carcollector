@@ -1,29 +1,24 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block head %}
-<link 
-  rel="stylesheet" 
-  type="text/css" 
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link
+  rel="stylesheet"
+  type="text/css"
   href="{% static 'css/cars/car-detail.css' %}"
 />
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 
 <section class="car-container">
   <div class="car-img">
-    <img 
-    src="{% static 'images/disney-car.svg' %}" 
-    alt="Car logo"
-    >
+    <img src="{% static 'images/disney-car.svg' %}" alt="Car logo" />
   </div>
   <div class="car-details">
     <h1>{{ car.owner }}'s Car</h1>
     {% if car.year > 2000 %}
-      <h2>A {{ car.year }} {{ car.make }} {{ car.model }} is a car from the 21st Century.</h2>
+    <h2>
+      A {{ car.year }} {{ car.make }} {{ car.model }} is a car from the 21st
+      Century.
+    </h2>
     {% else %}
-      <h2>A {{ car.year }} {{ car.make }} {{ car.model }} is a classic car.</h2>
+    <h2>A {{ car.year }} {{ car.make }} {{ car.model }} is a classic car.</h2>
     {% endif %}
     <p>{{ car.description }}</p>
     <div class="car-actions">
@@ -32,5 +27,35 @@
     </div>
   </div>
 </section>
-
+<div class="maintenance-renter-container">
+  <section class="maintenance">
+    <div class="subsection-title">
+      <h2>Vehicle Maintenance</h2>
+      <img src="{% static 'images/tools.svg' %}" alt="tool pic" />
+      <img src="{% static 'images/safety.svg' %}" alt="safety notice" />
+      <img
+        src="{% static 'images/cone.svg' %}"
+        alt="cone"
+      />
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Vin #</th>
+          <th>Service Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for maintenance in car.maintenance_set.all %}
+        <tr>
+          <td>{{maintenance.date}}</td>
+          <td>{{maintenance.vin}}</td>
+          <td>{{maintenance.get_service_type_display}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</div>
 {% endblock %}
