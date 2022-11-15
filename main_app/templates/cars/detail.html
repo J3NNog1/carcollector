@@ -138,27 +138,30 @@
       </div>
       <h3>Available Rentals</h3>
       <div class="subsection-content">
-        <div class="rental-container">
-          <div 
-            class="color-block"
-            style="background-color: {{ car.color }}"
-          ></div>
-          <a href="{% url 'rentals_detail' rental.id %}">
-            <p>A {{car.year}} {{car.make}} {{car.model}} is potentially available!</p>
-          </a>
-          <form action="{% url 'assoc_rental' car.id rental.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn submit">Offer rental</button>
-          </form>
-        </div>
-      {% endfor %}
-    {% else %}
-      <p class="all-rentals">
-        {{ car.owner }} already has all the available rentals 🥳
-      </p>
-    {% endif %}
+        {% comment %} We'll display available toys here {% endcomment %}
+        {% if rentals.count %}
+          {% for rental in rentals.all %}
+            <div class="rental-container">
+              <div 
+                class="color-block"
+                style="background-color: {{ car.color }}"
+              ></div>
+              <a href="{% url 'rentals_detail' rental.id %}">
+                <p> {{ rental.driver}} is available to rent {{ car.owner }}'s vehicle</p>
+              </a>
+              <form action="{% url 'assoc_rental' car.id rental.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn submit">Add Rental History</button>
+              </form>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p class="all-rentals">
+            {{car.owner}} already has all the available renter's available. 
+          </p>
+        {% endif %}
+      </div>
+    </section>
   </div>
-</section>
-</div>
 
 {% endblock %}
