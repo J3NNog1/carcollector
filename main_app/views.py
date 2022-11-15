@@ -22,9 +22,10 @@ def cars_index(request):
 
 def cars_detail(request, car_id):
   car = Car.objects.get(id=car_id)
+  rentals_car_doesnt_have = Rental.objects.exclude(id__in = car.rentals.all().values_list('id'))
   maintenance_form = MaintenanceForm()
   return render(request, 'cars/detail.html', {
-    'car': car, 'maintenance_form': maintenance_form})
+    'car': car, 'maintenance_form': maintenance_form, 'rentals': rentals_car_doesnt_have})
   
 def add_maintenance(request, car_id):
   form = MaintenanceForm(request.POST)
@@ -63,3 +64,8 @@ class RentalUpdate(UpdateView):
 class RentalDelete(DeleteView):
   model = Rental
   success_url = '/rentals/'
+  
+def assoc_rental(request, car_id, rental_id):
+  # Note that you can pass a toy's id instead of the whole object
+  Car.objects.get(id=car_id).rentals.add(rental_id)
+  return redirect('cars_detail', car_id=car_id)

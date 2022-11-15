@@ -15,6 +15,6 @@ urlpatterns = [
   path('rentals/', views.RentalList.as_view(), name='rentals_index'),
   path('rentals/<int:pk>/update/', views.RentalUpdate.as_view(), name='rentals_update'),
   path('rentals/<int:pk>/delete/', views.RentalDelete.as_view(), name='rentals_delete'),
-  
+  path('cars/<int:car_id>/assoc_rental/<int:rental_id>/', views.assoc_rental, name='assoc_rental'),
   
 ]

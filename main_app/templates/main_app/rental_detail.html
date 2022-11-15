@@ -11,8 +11,8 @@
 
 {% block content %}
   
-<div class="card" style="border-color: {{ rental.driver }}">
-  <div class="card-bg" style="background-color: {{ rental.driver }}"></div>
+<div class="card" style="border-color: {{ driver.color }}">
+  <div class="card-bg" style="background-color: {{ driver.color }}"></div>
   <div class="card-content">
     <h2>{{ rental.driver }}</h2>
     <p>Rented for {{ rental.days_rented }} days</p>

@@ -112,5 +112,53 @@
       </div>
     {% endif %}
     </section>
-    
+    <section class="rentals">
+      <div class="subsection-title">
+        <h2>Rentals</h2>
+        <img src="{% static 'images/car-rental-sign.svg' %}" alt="A rental sign" />
+        
+      </div>
+      <h3>{{ car.owner }}'s car rental history</h3>
+      <div class="subsection-content">
+        {% if car.rentals.count %}
+          {% for rental in car.rentals.all %}
+            <div class="rental-container">
+              <div 
+                class="color-block"
+                style="background-color: {{ car.color }}"
+              ></div>
+              <a href="{% url 'cars_detail' car.id %}">
+                <p>{{ rental.driver }} is renting {{ car.owner }}'s car</p>
+              </a>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p class="no-cars">{{car.owner}} doesnt have any driver's rental history</p>
+        {% endif %}
+      </div>
+      <h3>Available Rentals</h3>
+      <div class="subsection-content">
+        <div class="rental-container">
+          <div 
+            class="color-block"
+            style="background-color: {{ car.color }}"
+          ></div>
+          <a href="{% url 'rentals_detail' rental.id %}">
+            <p>A {{car.year}} {{car.make}} {{car.model}} is potentially available!</p>
+          </a>
+          <form action="{% url 'assoc_rental' car.id rental.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn submit">Offer rental</button>
+          </form>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p class="all-rentals">
+        {{ car.owner }} already has all the available rentals 🥳
+      </p>
+    {% endif %}
+  </div>
+</section>
+</div>
+
 {% endblock %}
